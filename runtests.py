@@ -19,7 +19,7 @@ def flake8_main(args):
 
 
 def run_tests():
-    command = subprocess.call('python -m test tests.tests', shell=True)
+    command = subprocess.call('python -m unittest tests.tests', shell=True)
     return command
 
 
