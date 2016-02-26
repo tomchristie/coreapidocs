@@ -14,9 +14,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def docs():
+    """
+    Generate the coreapi-docs and serve them to roor.
+    """
     now = datetime.datetime.now()
     docs = Docs("document.json")
     return render_template('home.html', date=now, docs=docs.get_docs())
+
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    """
+    Serve static files.
+    "send_static_file" will guess the correct MIME type
+    """
+    return app.send_static_file(path)
 
 
 if __name__ == '__main__':
