@@ -1,88 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>CoreAPI Docs</title>
+{% extends "base.html" %}
 
-    <!-- Bootstrap & Flatly -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+{% block content %}
 
-    <!-- Custom Style -->
-    <link rel="stylesheet/less" type="text/css" href="/less/styles.less" />
-    <!-- LESS CSS -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
-  </head>
+  {% for tag, sub_doc in docs.data.items() %}
+    <h2 class="tag-group">{{ tag }}</h2>
 
-  <body>
+    <div class="panel-group" role="tablist">
 
-    <div class="container">
+      {% for name, link in sub_doc.links.items() %}
+        <div class="panel panel-default endpoint">
+          <div class="panel-heading" role="tab" data-toggle="collapse" data-target="#{{ tag }}__{{ name }}">
+            <h4 class="panel-title title"><i class="fa fa-link"></i> {{ name }}() <i class="fa fa-plus-circle pull-right"></i></h4>
+          </div>
 
-      <nav class="navbar navbar-default">
-       <div class="container-fluid">
-         <!-- Brand and toggle get grouped for better mobile display -->
-         <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#coreapi-navbar" aria-expanded="false">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
+          <div id="{{ tag }}__{{ name }}" class="panel-collapse collapse" role="tabpanel">
+            <div class="panel-body">
+              <p class="lead">{{ link.description }}</p>
 
-           <a class="navbar-brand" href="#">{{ docs.title }}</a>
-         </div>
-       </div><!-- /.container-fluid -->
-      </nav>
+              {% if link.fields %}<ul class="list fields">{% endif %}
 
-      {% for tag, sub_doc in docs.data.items() %}
-        <h2 class="tag-group">{{ tag }}</h2>
+              {% for field in link.fields %}
+                <li class="field">
+                  {{ field.name }}{% if field.description %}, {{ field.description }}{% endif %}
+                  <span class="label label-primary label-required" title="Required">R</span>
+                </li>
+              {% endfor %}
 
-        <div class="panel-group" role="tablist">
-
-          {% for name, link in sub_doc.links.items() %}
-            <div class="panel panel-default endpoint">
-              <div class="panel-heading" role="tab" data-toggle="collapse" data-target="#{{ tag }}__{{ name }}">
-                <h4 class="panel-title title"><i class="fa fa-link"></i> {{ name }}</h4>
-              </div>
-
-              <div id="{{ tag }}__{{ name }}" class="panel-collapse collapse" role="tabpanel">
-                <div class="panel-body">
-                  <p class="lead">{{ link.description }}</p>
-
-                  {% if link.fields %}<ul class="list fields">{% endif %}
-
-                  {% for field in link.fields %}
-                    <li class="field">
-                      {{ field.name }}{% if field.description %}, {{ field.description }}{% endif %}
-                      <span class="label label-primary label-required" title="Required">R</span>
-                    </li>
-                  {% endfor %}
-
-                  {% if link.fields %}</ul>{% endif %}
-                </div>
-              </div>
+              {% if link.fields %}</ul>{% endif %}
             </div>
-          {% endfor %}
-
+          </div>
         </div>
       {% endfor %}
 
-      {% block footer %}
-      <div class="footer">
-        <div class="links">
-          <a target="_blank" href="http://www.iamemmanouil.com"><i class="fa fa-link"></i></a>
-          <a target="_blank" href="http://www.github.com/ekonstantinidis"><i class="fa fa-github"></i></a>
-          <a target="_blank" href="http://www.twitter.com/iamemmanouil"><i class="fa fa-twitter"></i></a>
-        </div>
-        Copyright © 2016 Emmanouil Konstantinidis.
-      </div>
-      {% endblock %}
-
     </div>
+  {% endfor %}
 
-    <!-- jQuery & Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock %}

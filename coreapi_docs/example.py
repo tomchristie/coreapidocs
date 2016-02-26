@@ -17,9 +17,8 @@ def docs():
     """
     Generate the coreapi-docs and serve them to roor.
     """
-    now = datetime.datetime.now()
     docs = Docs("document.json")
-    return render_template('home.html', date=now, docs=docs.get_docs())
+    return render_template('home.html', docs=docs.get_docs())
 
 
 @app.route('/<path:path>')
