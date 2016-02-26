@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def docs():
     now = datetime.datetime.now()
-    return render_template('coreapi_docs/templates/home.html', date=now)
+    return render_template('home.html', date=now)
 
 
 if __name__ == '__main__':
