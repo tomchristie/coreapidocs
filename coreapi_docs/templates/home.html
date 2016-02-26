@@ -6,9 +6,13 @@
 
     <!-- Bootstrap & Flatly -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- Styles CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet/less" type="text/css" href="/less/styles.less" />
+    <!-- LESS CSS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
   </head>
 
   <body>
@@ -19,7 +23,7 @@
        <div class="container-fluid">
          <!-- Brand and toggle get grouped for better mobile display -->
          <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#drfdoc-navbar" aria-expanded="false">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#coreapi-navbar" aria-expanded="false">
              <span class="sr-only">Toggle navigation</span>
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
@@ -27,15 +31,53 @@
            </button>
 
            <a class="navbar-brand" href="#">{{ docs.title }}</a>
-
          </div>
        </div><!-- /.container-fluid -->
       </nav>
 
-      <h1>Hello. It is {{ date }}!</h1>
+      {% for tag, sub_doc in docs.data.items() %}
+        <h2 class="tag-group">{{ tag }}</h2>
 
-      <h3>Docs:</h3>
-      <p>{{ docs }}</p>
+        <div class="panel-group" role="tablist">
+
+          {% for name, link in sub_doc.links.items() %}
+            <div class="panel panel-default endpoint">
+              <div class="panel-heading" role="tab" data-toggle="collapse" data-target="#{{ tag }}__{{ name }}">
+                <h4 class="panel-title title"><i class="fa fa-link"></i> {{ name }}</h4>
+              </div>
+
+              <div id="{{ tag }}__{{ name }}" class="panel-collapse collapse" role="tabpanel">
+                <div class="panel-body">
+                  <p class="lead">{{ link.description }}</p>
+
+                  {% if link.fields %}<ul class="list fields">{% endif %}
+
+                  {% for field in link.fields %}
+                    <li class="field">
+                      {{ field.name }}{% if field.description %}, {{ field.description }}{% endif %}
+                      <span class="label label-primary label-required" title="Required">R</span>
+                    </li>
+                  {% endfor %}
+
+                  {% if link.fields %}</ul>{% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+
+      {% block footer %}
+      <div class="footer">
+        <div class="links">
+          <a target="_blank" href="http://www.iamemmanouil.com"><i class="fa fa-link"></i></a>
+          <a target="_blank" href="http://www.github.com/ekonstantinidis"><i class="fa fa-github"></i></a>
+          <a target="_blank" href="http://www.twitter.com/iamemmanouil"><i class="fa fa-twitter"></i></a>
+        </div>
+        Copyright © 2016 Emmanouil Konstantinidis.
+      </div>
+      {% endblock %}
 
     </div>
 
