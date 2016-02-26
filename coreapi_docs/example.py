@@ -1,6 +1,8 @@
 import datetime
 from flask import Flask
 from flask import render_template
+from docs import Docs
+
 app = Flask(__name__)
 
 # ToDo:
@@ -13,7 +15,8 @@ app = Flask(__name__)
 @app.route('/')
 def docs():
     now = datetime.datetime.now()
-    return render_template('home.html', date=now)
+    docs = Docs("document.json")
+    return render_template('home.html', date=now, docs=docs.get_docs())
 
 
 if __name__ == '__main__':
