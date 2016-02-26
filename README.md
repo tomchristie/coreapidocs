@@ -31,7 +31,7 @@ In order to run the tests you will have to run:
     python runtests.py
 
 
-[travis-image]: https://travis-ci.com/ekonstantinidis/coreapi-docs.svg
+[travis-image]: https://travis-ci.com/ekonstantinidis/coreapi-docs.svg?token=9QR4ewbqbkEmHps6q5sq&branch=master
 [travis-url]: https://travis-ci.com/ekonstantinidis/coreapi-docs
 
 [pypi-image]: https://badge.fury.io/py/coreapi-docs.svg
