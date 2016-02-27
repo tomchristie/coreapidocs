@@ -15,13 +15,17 @@ You can install `coreapi-docs` through pypi.
 
 
 ### Development
+Create the virtualenv and install the requirements.
 
     virtualenv env
     source env/bin/activate
 
     pip install -r requirements.txt
 
-    python coreapi_docs/example.py
+
+You will need to pass an argument ie. `document.json`.
+
+    python coreapi_docs/example.py document.json
     # Then go to: http://127.0.0.1:5000/
 
 

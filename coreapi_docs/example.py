@@ -1,22 +1,27 @@
-from flask import Flask
-from flask import render_template
+import sys
+from flask import Flask, render_template, abort
 from docs import Docs
 
 app = Flask(__name__)
 
-# ToDo:
-# Flask
-# & serve static
-# Takes a document (file/url)
-# 1 View that renders the document
+
+@app.errorhandler(402)
+def payme(e):
+    return 'Pay me!'
 
 
 @app.route('/')
 def docs():
     """
     Generate the coreapi-docs and serve them to roor.
+    Accepts one parameter with a filename (ie. document.json)
     """
-    docs = Docs("document.json")
+
+    if len(sys.argv) != 2:
+        abort(400, {"msg": "Missing file parameter ie. document.json"})
+
+    filename = sys.argv[-1]
+    docs = Docs(filename)
     return render_template('home.html', docs=docs.get_docs())
 
 
