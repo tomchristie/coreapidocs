@@ -4,6 +4,7 @@ import subprocess
 
 
 FLAKE8_ARGS = ['coreapi_docs/', 'tests/', '--ignore=E501']
+COVERAGE_ARGS = ['--source=coreapi_docs', '--omit=coreapi_docs/__init__.py', '-m unittest tests.tests']
 
 
 def exit_on_failure(command, message=None):
@@ -12,16 +13,32 @@ def exit_on_failure(command, message=None):
 
 
 def flake8_main(args):
-    print('Running: flake8', FLAKE8_ARGS)
+    print('Running: flake8 %s' % " ".join(FLAKE8_ARGS))
     command = subprocess.call(['flake8'] + args)
-    print("" if command else "Success. flake8 passed.")
+    print("\n" if command else "Success. flake8 passed.\n")
     return command
 
 
-def run_tests():
-    command = subprocess.call('python -m unittest tests.tests', shell=True)
+def run_tests(args):
+    print('Running: coverage run %s' % " ".join(COVERAGE_ARGS))
+    command = subprocess.call(['coverage', 'run'] + args, shell=True)
+    return command
+
+
+def run_coverage_report():
+    print("\nCoverage Report:")
+    command = subprocess.call(['coverage', 'report'])
+    return command
+
+
+def run_coverage_html():
+    print("\nGenerating Coverage HTML.")
+    command = subprocess.call(['coverage', 'html'])
+    print("Coverage HTML generated.")
     return command
 
 
 exit_on_failure(flake8_main(FLAKE8_ARGS))
-exit_on_failure(run_tests())
+exit_on_failure(run_tests(COVERAGE_ARGS))
+exit_on_failure(run_coverage_report())
+exit_on_failure(run_coverage_html())

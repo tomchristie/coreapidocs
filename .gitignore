@@ -9,3 +9,7 @@ dist/
 
 # Ignore demo json
 document.json
+
+# Coverage
+.coverage
+htmlcov
