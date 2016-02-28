@@ -2,13 +2,16 @@ language: python
 
 sudo: false
 
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
+env:
+  - TOX_ENV=py27
+  - TOX_ENV=py34
+  - TOX_ENV=py35
+
+matrix:
+  fast_finish: true
 
 install:
-  - pip install -r requirements.txt
+  - pip install tox
 
 script:
-  - python runtests.py
+  - tox -e $TOX_ENV
