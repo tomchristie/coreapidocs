@@ -10,7 +10,6 @@ setup(
     url="https://github.com/ekonstantinidis/coreapi-docs",
     license='BSD',
     description="Document APIs with CoreAPI.",
-    long_description=open("README.md").read(),
     install_requires=[
         'Flask',
         'Jinja2',
