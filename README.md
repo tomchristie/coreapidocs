@@ -25,7 +25,7 @@ Create the virtualenv and install the requirements.
 
 You will need to pass an argument ie. `document.json`.
 
-    python coreapi_docs/example.py document.json
+    python coreapidocs/example.py document.json
     # Then go to: http://127.0.0.1:5000/
 
 

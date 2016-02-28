@@ -3,8 +3,8 @@ import sys
 import subprocess
 
 
-FLAKE8_ARGS = ['coreapi_docs/', 'tests/', '--ignore=E501']
-COVERAGE_ARGS = ['--source=coreapi_docs', '--omit=coreapi_docs/__init__.py', '-m unittest tests.tests']
+FLAKE8_ARGS = ['coreapidocs/', 'tests/', '--ignore=E501']
+COVERAGE_ARGS = ['--source=coreapidocs', '--omit=coreapidocs/__init__.py', '-m unittest tests.tests']
 
 
 def exit_on_failure(command, message=None):

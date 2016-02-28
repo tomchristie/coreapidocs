@@ -1,6 +1,6 @@
 import sys
 import unittest
-from coreapi_docs import example
+from coreapidocs import example
 
 
 class BasicTest(unittest.TestCase):

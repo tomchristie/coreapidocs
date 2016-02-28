@@ -1,6 +1,6 @@
 import sys
 from flask import Flask, render_template, abort
-from coreapi_docs.docs import Docs
+from docs import Docs
 
 app = Flask(__name__)
 
@@ -16,9 +16,11 @@ def docs():
         abort(400, {"msg": "Missing file parameter ie. document.json"})
 
     filename = sys.argv[-1]
-    docs = Docs(filename)
 
-    if docs.error:
+    try:
+        schema = open(filename, 'r').read()
+        docs = Docs(schema)
+    except (IOError, OSError):
         abort(400, {"msg": "No such file or directory - %s" % filename})
 
     return render_template('home.html', docs=docs.get_docs())
