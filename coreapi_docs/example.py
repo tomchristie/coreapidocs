@@ -5,11 +5,6 @@ from docs import Docs
 app = Flask(__name__)
 
 
-@app.errorhandler(402)
-def payme(e):
-    return 'Pay me!'
-
-
 @app.route('/')
 def docs():
     """
@@ -22,6 +17,10 @@ def docs():
 
     filename = sys.argv[-1]
     docs = Docs(filename)
+
+    if docs.error:
+        abort(400, {"msg": "No such file or directory - %s" % filename})
+
     return render_template('home.html', docs=docs.get_docs())
 
 
