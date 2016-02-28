@@ -5,10 +5,12 @@ class Docs(object):
 
     def __init__(self, schema_file):
         try:
-            content = open(schema_file, 'r').read()
+            file = open(schema_file, 'r')
+            content = file.read()
             codec = coreapi.codecs.CoreJSONCodec()
             self.document = codec.load(content)
-            content.close()
+            self.error = None
+            file.close()
         except (IOError, OSError) as e:
             self.document = None
             self.error = e
