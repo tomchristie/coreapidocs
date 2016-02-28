@@ -6,6 +6,8 @@ __pycache__/
 # Python
 env/
 dist/
+.tox/
+coreapidocs.egg-info/
 
 # Ignore demo json
 document.json
