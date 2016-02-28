@@ -4,7 +4,7 @@ import subprocess
 
 
 FLAKE8_ARGS = ['coreapidocs/', 'tests/', '--ignore=E501']
-COVERAGE_ARGS = ['--source=coreapidocs', '--omit=coreapidocs/__init__.py', '-m unittest tests.tests']
+COVERAGE_ARGS = ['--source=coreapidocs', '--omit=coreapidocs/__init__.py', '-m unittest discover']
 
 
 def exit_on_failure(command, message=None):
@@ -27,7 +27,7 @@ def run_tests(args):
 
 def run_coverage_report():
     print("\nCoverage Report:")
-    command = subprocess.call(['coverage', 'report'])
+    command = subprocess.call(['coverage', 'report', '-m'])
     return command
 
 
