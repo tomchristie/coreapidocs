@@ -1,6 +1,6 @@
 import sys
 from flask import Flask, render_template, abort
-from docs import Docs
+from coreapidocs.docs import Docs
 
 app = Flask(__name__)
 

@@ -4,7 +4,7 @@ import subprocess
 
 
 FLAKE8_ARGS = ['coreapidocs/', 'tests/', '--ignore=E501']
-NOSETESTS_ARGS = ['--with-coverage', '--cover-package=coreapidocs', '--cover-erase', '--cover-html']
+NOSETESTS_ARGS = ['-v', '--with-coverage', '--coverage=coreapidocs', '--coverage-report=html', '--coverage-report=term-missing']
 
 
 def exit_on_failure(command, message=None):
@@ -20,8 +20,8 @@ def flake8_main(args):
 
 
 def run_tests(args):
-    print('Running: nosetests %s' % " ".join(NOSETESTS_ARGS))
-    command = subprocess.call(['nosetests'] + args)
+    print('Running: nose2 %s' % " ".join(NOSETESTS_ARGS))
+    command = subprocess.call(['nose2'] + args)
     return command
 
 exit_on_failure(flake8_main(FLAKE8_ARGS))
