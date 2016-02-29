@@ -14,4 +14,4 @@ document.json
 
 # Coverage
 .coverage
-htmlcov
+cover

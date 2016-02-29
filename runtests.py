@@ -4,7 +4,7 @@ import subprocess
 
 
 FLAKE8_ARGS = ['coreapidocs/', 'tests/', '--ignore=E501']
-COVERAGE_ARGS = ['--source=coreapidocs', '--omit=coreapidocs/__init__.py', 'nosetests', '-v']
+NOSETESTS_ARGS = ['--with-coverage', '--cover-package=coreapidocs', '--cover-erase', '--cover-html']
 
 
 def exit_on_failure(command, message=None):
@@ -20,25 +20,9 @@ def flake8_main(args):
 
 
 def run_tests(args):
-    print('Running: coverage run %s' % " ".join(COVERAGE_ARGS))
-    command = subprocess.call(['coverage', 'run'] + args, shell=True)
+    print('Running: nosetests %s' % " ".join(NOSETESTS_ARGS))
+    command = subprocess.call(['nosetests'] + args)
     return command
-
-
-def run_coverage_report():
-    print("\nCoverage Report:")
-    command = subprocess.call(['coverage', 'report', '-m'])
-    return command
-
-
-def run_coverage_html():
-    print("\nGenerating Coverage HTML.")
-    command = subprocess.call(['coverage', 'html'])
-    print("Coverage HTML generated.")
-    return command
-
 
 exit_on_failure(flake8_main(FLAKE8_ARGS))
-exit_on_failure(run_tests(COVERAGE_ARGS))
-exit_on_failure(run_coverage_report())
-exit_on_failure(run_coverage_html())
+exit_on_failure(run_tests(NOSETESTS_ARGS))
