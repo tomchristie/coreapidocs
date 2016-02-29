@@ -18,7 +18,7 @@ def docs():
     filename = sys.argv[-1]
 
     try:
-        schema = open(filename, 'r').read()
+        schema = open(filename, 'rb').read()
         docs = Docs(schema)
     except (IOError, OSError):
         abort(400, {"msg": "No such file or directory - %s" % filename})
