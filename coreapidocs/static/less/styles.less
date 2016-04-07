@@ -1,0 +1,122 @@
+/* @group Colours */
+
+@BgColor: #FEFEFE;
+@AccordionBgColor: #ecf0f1;
+
+/* @end Colours */
+
+
+/* @group Misc */
+
+body {
+  background-color: @BgColor;
+}
+
+.navbar {
+  margin-top: 40px;
+}
+
+/* @end Misc */
+
+
+/* @group Endpoint */
+
+.endpoint {
+  padding: 5px 20px;
+  margin: 0;
+  background-color: #ecf0f1;
+
+  &:hover {
+    background-color: darken(@AccordionBgColor, 5%);
+
+    .panel-heading {
+      background-color: darken(@AccordionBgColor, 5%);
+    }
+  }
+
+  .panel-heading {
+    padding: 8px;
+    cursor: pointer;
+
+    .title {
+      font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+      word-wrap: break-word;
+
+      .fa {
+        font-size: 20px;
+        color: darken(@AccordionBgColor, 25%);
+
+        &.fa-plus-circle {
+          color: darken(@AccordionBgColor, 35%);
+        }
+      }
+    }
+  }
+
+  .panel-body {
+    padding: 0;
+  }
+
+  > .panel-heading +.panel-collapse > .panel-body { border: 0; }
+}
+
+/* @end Endpoint */
+
+
+/* @group Footer */
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .links {
+    padding: 20px 0;
+
+   .fa {
+      margin: 0 10px;
+      font-size: 22px;
+    }
+  }
+}
+
+/* @end Footer */
+
+
+/* @group Github Ribbon - SVG */
+
+.github-corner {
+
+  svg {
+    z-index: 9999;
+  }
+
+  &:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+@keyframes octocat-wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-25deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-25deg); }
+  80% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 768px) {
+    .github-corner {
+      display: none;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
+
+/* @end Github Ribbon - SVG */

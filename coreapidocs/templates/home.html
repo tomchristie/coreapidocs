@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% for tag, sub_doc in docs.data.items() %}
+    <h2 class="tag-group">{{ tag }}</h2>
+
+    <div class="panel-group" role="tablist">
+
+      {% for name, link in sub_doc.links.items() %}
+        <div class="panel panel-default endpoint">
+          <div class="panel-heading" role="tab" data-toggle="collapse" data-target="#{{ tag }}__{{ name }}">
+            <h4 class="panel-title title"><i class="fa fa-link"></i> {{ name }}() <i class="fa fa-plus-circle pull-right"></i></h4>
+          </div>
+
+          <div id="{{ tag }}__{{ name }}" class="panel-collapse collapse" role="tabpanel">
+            <div class="panel-body">
+              <p class="lead">{{ link.description }}</p>
+
+              {% if link.fields %}<ul class="list fields">{% endif %}
+
+              {% for field in link.fields %}
+                <li class="field">
+                  {{ field.name }}{% if field.description %}, {{ field.description }}{% endif %}
+                  <span class="label label-primary label-required" title="Required">R</span>
+                </li>
+              {% endfor %}
+
+              {% if link.fields %}</ul>{% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  {% endfor %}
+
+{% endblock %}
