@@ -11,7 +11,6 @@ setup(
     license='BSD',
     description="Document APIs with CoreAPI.",
     install_requires=[
-        'Flask',
         'Jinja2',
         'coreapi'
     ],
