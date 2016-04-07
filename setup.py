@@ -10,13 +10,14 @@ setup(
     url="https://github.com/ekonstantinidis/coreapidocs",
     license='BSD',
     description="Document APIs with CoreAPI.",
+    long_description=open("README.md").read(),
     install_requires=[
         'Jinja2',
         'coreapi'
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
-        'Environment :: Console',
+        'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
