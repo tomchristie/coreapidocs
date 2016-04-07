@@ -1,4 +1,4 @@
-coreapi-docs [![travis][travis-image]][travis-url] [![pypi][pypi-image]][pypi-url]
+coreapidocs [![travis][travis-image]][travis-url] [![pypi][pypi-image]][pypi-url]
 ===
 Document APIs with CoreAPI.
 
@@ -9,9 +9,9 @@ Document APIs with CoreAPI.
 
 
 ### Installation
-You can install `coreapi-docs` through pypi.
+You can install `coreapidocs` through pypi.
 
-    pip install coreapi-docs
+    pip install coreapidocs
 
 
 ### Development
@@ -35,8 +35,8 @@ In order to run the tests you will have to run:
     python runtests.py
 
 
-[travis-image]: https://travis-ci.com/ekonstantinidis/coreapi-docs.svg?token=9QR4ewbqbkEmHps6q5sq&branch=master
-[travis-url]: https://travis-ci.com/ekonstantinidis/coreapi-docs
+[travis-image]: https://travis-ci.com/ekonstantinidis/coreapidocs.svg?token=9QR4ewbqbkEmHps6q5sq&branch=master
+[travis-url]: https://travis-ci.com/ekonstantinidis/coreapidocs
 
-[pypi-image]: https://badge.fury.io/py/coreapi-docs.svg
-[pypi-url]: https://pypi.python.org/pypi/coreapi-docs/
+[pypi-image]: https://badge.fury.io/py/coreapidocs.svg
+[pypi-url]: https://pypi.python.org/pypi/coreapidocs/

@@ -7,7 +7,7 @@ setup(
     author_email="manos@iamemmanouil.com",
     packages=find_packages(),
     include_package_data=True,
-    url="https://github.com/ekonstantinidis/coreapi-docs",
+    url="https://github.com/ekonstantinidis/coreapidocs",
     license='BSD',
     description="Document APIs with CoreAPI.",
     install_requires=[
