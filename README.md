@@ -14,6 +14,28 @@ You can install `coreapidocs` through pypi.
     pip install coreapidocs
 
 
+### Usage
+You will have to pass a `.json` document to initialize the docs.
+
+```python
+from coreapidocs.docs import Docs
+
+try:
+    schema = open(filename, 'rb').read()
+    docs = Docs(schema)
+except (IOError, OSError):
+    abort(400, {"msg": "No such file or directory - %s" % filename})
+```
+
+Then you can simply pass the `docs` variable to your template (ie. Flask):
+
+```python
+return render_template('home.html', docs=docs.get_docs())
+```
+
+For more information view the source of [example.py](coreapidocs/example.py).
+
+
 ### Development
 Create the virtualenv and install the requirements.
 
